@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2019-08-02 11:18:29
+-- 產生時間： 2019-08-02 11:45:50
 -- 伺服器版本： 10.3.16-MariaDB
 -- PHP 版本： 7.3.6
 
@@ -32,6 +32,28 @@ CREATE TABLE `menu_list` (
   `sl_id` int(11) NOT NULL COMMENT '便當店編號',
   `pl_id` int(11) NOT NULL COMMENT '菜色編號'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜單列表';
+
+--
+-- 傾印資料表的資料 `menu_list`
+--
+
+INSERT INTO `menu_list` (`sl_id`, `pl_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
+(3, 9),
+(3, 10),
+(3, 11),
+(3, 12),
+(4, 13),
+(4, 14),
+(4, 15),
+(4, 16);
 
 -- --------------------------------------------------------
 
@@ -76,6 +98,28 @@ CREATE TABLE `product_list` (
   `pl_content` varchar(200) DEFAULT NULL COMMENT '菜色簡介'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜色列表';
 
+--
+-- 傾印資料表的資料 `product_list`
+--
+
+INSERT INTO `product_list` (`pl_id`, `pl_name`, `pl_img`, `pl_price`, `pl_content`) VALUES
+(1, '大麥克', '大麥克圖片', 100, '好吃的大麥克'),
+(2, '雙層牛肉吉士堡', '雙層牛肉吉士堡圖片', 120, '好吃的雙層牛肉吉士堡'),
+(3, '麥香雞', '麥香雞的相片', 80, '好吃的麥香雞'),
+(4, '麥克雞塊', '麥克雞塊的圖片', 90, '好吃的麥克雞塊'),
+(5, '勁辣雞腿堡', '勁辣雞腿堡圖片', 125, '美味的勁辣雞腿堡'),
+(6, '墨西哥雞肉捲', '墨西哥雞肉捲的圖片', 65, '美味的墨西哥雞肉捲'),
+(7, '炸雞全家桶', '炸雞全家桶圖片', 260, '美味的炸雞全家桶'),
+(8, '葡式蛋塔', '葡式蛋塔圖片', 35, '美味的葡式蛋塔'),
+(9, '水煮雞胸肉', '水煮雞胸肉圖片', 90, '健康的水煮雞胸肉'),
+(10, '水煮菜套餐', '水煮菜套餐圖片', 70, '健康的水煮菜套餐'),
+(11, '清蒸鯖魚', '清蒸鯖魚圖片', 120, '健康的清蒸鯖魚'),
+(12, '紅燒獅子頭', '紅燒獅子頭圖片', 100, '健康的紅燒獅子頭'),
+(13, '鮭魚壽司', '鮭魚壽司圖片', 40, '新鮮的鮭魚壽司'),
+(14, '茶碗蒸', '茶碗蒸圖片', 40, '新鮮的茶碗蒸'),
+(15, '天婦羅', '天婦羅圖片', 60, '新鮮的天婦羅'),
+(16, '龍蝦握壽司', '龍蝦握壽司圖片', 40, '新鮮的龍蝦握壽司');
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +132,16 @@ CREATE TABLE `store_list` (
   `sl_address` varchar(200) NOT NULL COMMENT '便當店地址',
   `sl_phone` int(20) NOT NULL COMMENT '便當店電話'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='便當店列表';
+
+--
+-- 傾印資料表的資料 `store_list`
+--
+
+INSERT INTO `store_list` (`sl_id`, `sl_name`, `sl_address`, `sl_phone`) VALUES
+(1, '麥當勞', '台中市向上路100號', 240666888),
+(2, '肯德基', '台中市台灣大道99號', 45689342),
+(3, '低GI廚房', '台中市文心路55號', 466778899),
+(4, '藏壽司', '台中市中清路12號', 412123344);
 
 -- --------------------------------------------------------
 
@@ -103,6 +157,14 @@ CREATE TABLE `user_data` (
   `ud_phone` varchar(20) NOT NULL COMMENT '會員電話',
   `ud_address` varchar(200) DEFAULT NULL COMMENT '會員地址'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='會員資料列表';
+
+--
+-- 傾印資料表的資料 `user_data`
+--
+
+INSERT INTO `user_data` (`ud_id`, `ud_name`, `ud_account`, `ud_pwd`, `ud_phone`, `ud_address`) VALUES
+(1, 'Toby', 'toby', 1234, '0912-345678', '南投某地'),
+(2, 'Peach', 'peach', 1234, '0987-654321', '台中某地');
 
 --
 -- 已傾印資料表的索引
@@ -164,19 +226,19 @@ ALTER TABLE `order_list`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `pl_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜色編號';
+  MODIFY `pl_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜色編號', AUTO_INCREMENT=17;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `store_list`
 --
 ALTER TABLE `store_list`
-  MODIFY `sl_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '便當店編號';
+  MODIFY `sl_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '便當店編號', AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `ud_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員編號';
+  MODIFY `ud_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員編號', AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
