@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2019-08-02 14:36:10
+-- 產生時間： 2019-08-02 15:19:44
 -- 伺服器版本： 10.3.16-MariaDB
 -- PHP 版本： 7.3.6
 
@@ -31,6 +31,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addOrder` (IN `n` VARCHAR(200))  BE
   PREPARE ss from @stmt;
   EXECUTE ss;
 end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `show_item` (`store_name` VARCHAR(50))  BEGIN
+SELECT s.sl_name as '店名',
+s.sl_address as '地址',
+s.sl_phone as '電話',
+p.pl_name as '菜名',
+p.pl_img as '圖片',
+p.pl_price as '單價',
+p.pl_content as '簡介'
+FROM store_list as s
+LEFT JOIN menu_list as m on m.sl_id = s.sl_id
+LEFT JOIN product_list as p on p.pl_id = m.pl_id
+WHERE s.sl_name =store_name;
+END$$
 
 DELIMITER ;
 
