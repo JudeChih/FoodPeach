@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2019-08-02 11:45:50
+-- 產生時間： 2019-08-02 14:36:10
 -- 伺服器版本： 10.3.16-MariaDB
 -- PHP 版本： 7.3.6
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `foodpeach`
 --
+
+DELIMITER $$
+--
+-- 程序
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addOrder` (IN `n` VARCHAR(200))  BEGIN
+  set @stmt = concat("INSERT INTO `order_detail` (`od_id`, `ol_id`, `pl_id`, `od_num`, `od_remark`) VALUES (NULL,", n ,")");
+  PREPARE ss from @stmt;
+  EXECUTE ss;
+end$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -68,6 +80,15 @@ CREATE TABLE `order_detail` (
   `od_num` int(11) NOT NULL COMMENT '明細數量',
   `od_remark` varchar(200) DEFAULT NULL COMMENT '備註'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='訂單明細';
+
+--
+-- 傾印資料表的資料 `order_detail`
+--
+
+INSERT INTO `order_detail` (`od_id`, `ol_id`, `pl_id`, `od_num`, `od_remark`) VALUES
+(1, 1, 1, 2, 'no'),
+(2, 1, 1, 2, 'no'),
+(3, 1, 2, 3, 'no');
 
 -- --------------------------------------------------------
 
@@ -118,7 +139,8 @@ INSERT INTO `product_list` (`pl_id`, `pl_name`, `pl_img`, `pl_price`, `pl_conten
 (13, '鮭魚壽司', '鮭魚壽司圖片', 40, '新鮮的鮭魚壽司'),
 (14, '茶碗蒸', '茶碗蒸圖片', 40, '新鮮的茶碗蒸'),
 (15, '天婦羅', '天婦羅圖片', 60, '新鮮的天婦羅'),
-(16, '龍蝦握壽司', '龍蝦握壽司圖片', 40, '新鮮的龍蝦握壽司');
+(16, '龍蝦握壽司', '龍蝦握壽司圖片', 40, '新鮮的龍蝦握壽司'),
+(17, '測試資料', '測試資料圖片', 100, '測試用的測試資料');
 
 -- --------------------------------------------------------
 
@@ -214,7 +236,7 @@ ALTER TABLE `user_data`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '明細編號';
+  MODIFY `od_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '明細編號', AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_list`
@@ -226,7 +248,7 @@ ALTER TABLE `order_list`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_list`
 --
 ALTER TABLE `product_list`
-  MODIFY `pl_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜色編號', AUTO_INCREMENT=17;
+  MODIFY `pl_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜色編號', AUTO_INCREMENT=18;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `store_list`
